@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>D works Tattoo</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #080808;
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 50px;
+
+            background-color: #000;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #aaa;
+        }
+
+        /* =========================
+           HOME
+        ========================= */
+
+        #home {
+            min-height: 600px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 80px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.85),
+                    rgba(0,0,0,0.95)
+                );
+
+            border-bottom: 1px solid #222;
+        }
+
+        #shop-name {
+            font-size: 65px;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        #location {
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        .home-button,
+        .appointment-button {
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 14px 30px;
+
+            background-color: white;
+            color: black;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            border-radius: 3px;
+        }
+
+        .home-button:hover,
+        .appointment-button:hover {
+            background-color: #ccc;
+        }
+
+        /* =========================
+           COMMON SECTION
+        ========================= */
+
+        section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 90px 30px;
+        }
+
+        section h2 {
+            font-size: 35px;
+            margin-bottom: 30px;
+
+            border-bottom: 1px solid #444;
+            padding-bottom: 12px;
+        }
+
+        section p {
+            color: #ccc;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        #about {
+            background-color: #0b0b0b;
+        }
+
+        .about-box {
+            max-width: 800px;
+        }
+
+        /* =========================
+           TATTOO TYPES
+        ========================= */
+
+        #tattoos {
+            background-color: #050505;
+        }
+
+        #tattoo-types {
+            list-style: none;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        #tattoo-types li {
+            background-color: #151515;
+
+            padding: 20px;
+
+            border: 1px solid #333;
+
+            font-size: 18px;
+        }
+
+        #tattoo-types li:hover {
+            border-color: #aaa;
+        }
+
+        .price {
+            margin-top: 35px;
+
+            font-size: 25px !important;
+
+            color: white !important;
+
+            font-weight: bold;
+        }
+
+        /* =========================
+           LUXURY TATTOO GALLERY
+        ========================= */
+
+        #gallery {
+            background-color: #080808;
+        }
+
+        #tattoo-gallery {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 25px;
+
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+
+            overflow: hidden;
+
+            height: 380px;
+
+            background-color: #111;
+
+            border: 1px solid #333;
+
+            border-radius: 4px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 20px;
+
+            background: linear-gradient(
+                transparent,
+                rgba(0,0,0,0.9)
+            );
+
+            opacity: 0;
+
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h3 {
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        #services {
+            background-color: #0b0b0b;
+        }
+
+        #services-list {
+            list-style: none;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-top: 20px;
+        }
+
+        #services-list li {
+            padding: 30px 20px;
+
+            background-color: #151515;
+
+            border: 1px solid #333;
+
+            text-align: center;
+
+            font-size: 18px;
+        }
+
+        #services-list li:hover {
+            border-color: #aaa;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        #contact {
+            background-color: #050505;
+        }
+
+        .contact-box {
+            background-color: #151515;
+
+            padding: 45px;
+
+            border: 1px solid #333;
+
+            text-align: center;
+        }
+
+        .contact-box p {
+            margin: 15px 0;
+        }
+
+        .instagram {
+            color: #ddd;
+        }
+
+        /* =========================
+           APPOINTMENT
+        ========================= */
+
+        #appointment {
+            text-align: center;
+            background-color: #0b0b0b;
+        }
+
+        .appointment-box {
+            max-width: 700px;
+
+            margin: auto;
+
+            padding: 40px;
+
+            background-color: #151515;
+
+            border: 1px solid #333;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            background-color: #000;
+
+            color: #777;
+
+            border-top: 1px solid #222;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            #shop-name {
+                font-size: 40px;
+            }
+
+            #tattoo-types {
+                grid-template-columns: 1fr;
+            }
+
+            #services-list {
+                grid-template-columns: 1fr;
+            }
+
+            #tattoo-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                height: 400px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav>
+
+        <div class="logo">
+            D works Tattoo
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#home">HOME</a>
+
+            <a href="#about">ABOUT</a>
+
+            <a href="#tattoos">TATTOOS</a>
+
+            <a href="#gallery">GALLERY</a>
+
+            <a href="#services">SERVICES</a>
+
+            <a href="#contact">CONTACT</a>
+
+            <a href="#appointment">BOOK APPOINTMENT</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HOME
+    ========================= -->
+
+    <header id="home">
+
+        <h1 id="shop-name">
+            Loading...
+        </h1>
+
+        <p class="tagline">
+            Professional Tattoo Artist • Art • Creativity
+        </p>
+
+        <p id="location">
+            Loading location...
+        </p>
+
+        <a
+            class="home-button"
+            href="#appointment"
+        >
+            BOOK APPOINTMENT
+        </a>
+
+    </header>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section id="about">
+
+        <div class="about-box">
+
+            <h2>
+                About D works Tattoo
+            </h2>
+
+            <p>
+                We provide good tattoo services while maintaining
+                proper hygiene and a clean environment.
+            </p>
+
+            <p>
+                Our artist
+                <strong>Deepak</strong>
+                creates tattoos with creativity,
+                care and attention to detail.
+            </p>
+
+            <p>
+                We specialize in different tattoo styles
+                and provide professional tattoo services
+                based on your design and requirements.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         TATTOOS
+    ========================= -->
+
+    <section id="tattoos">
+
+        <h2>
+            Tattoo Types
+        </h2>
+
+        <ul id="tattoo-types">
+        </ul>
+
+        <p
+            class="price"
+            id="price"
+        >
+            Loading price...
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         TATTOO GALLERY
+    ========================= -->
+
+    <section id="gallery">
+
+        <h2>
+            Our Tattoo Gallery
+        </h2>
+
+        <p>
+            Explore some of our tattoo artwork.
+        </p>
+
+        <div id="tattoo-gallery">
+            Loading tattoo images...
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICES
+    ========================= -->
+
+    <section id="services">
+
+        <h2>
+            Our Services
+        </h2>
+
+        <ul id="services-list">
+        </ul>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section id="contact">
+
+        <div class="contact-box">
+
+            <h2>
+                Contact D works Tattoo
+            </h2>
+
+            <p id="artist">
+                Loading artist...
+            </p>
+
+            <p id="phone">
+                Loading phone...
+            </p>
+
+            <p id="email">
+                Loading email...
+            </p>
+
+            <p
+                class="instagram"
+                id="instagram"
+            >
+                Loading Instagram...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         APPOINTMENT
+    ========================= -->
+
+    <section id="appointment">
+
+        <div class="appointment-box">
+
+            <h2>
+                Book an Appointment
+            </h2>
+
+            <p>
+                Send your tattoo design through WhatsApp.
+            </p>
+
+            <p>
+                Confirm the tattoo size, placement
+                and appointment date.
+            </p>
+
+            <p>
+                Advance payment is compulsory
+                to book an appointment.
+            </p>
+
+            <p>
+                WhatsApp:
+                <strong>6361918038</strong>
+            </p>
+
+            <a
+                class="appointment-button"
+                href="https://wa.me/916361918038"
+                target="_blank"
+            >
+                CONTACT ON WHATSAPP
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        © 2026 D works Tattoo | Attibele
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           SHOP INFORMATION
+        ========================= */
+
+        fetch("http://127.0.0.1:5000/api/shop")
+
+        .then(function(response) {
+
+            return response.json();
+
+        })
+
+        .then(function(data) {
+
+            document.getElementById("shop-name").textContent =
+                data.name;
+
+            document.getElementById("location").textContent =
+                "📍 " + data.location;
+
+            document.getElementById("price").textContent =
+                "Starting Price: ₹" + data.starting_price;
+
+            document.getElementById("artist").textContent =
+                "Artist: " + data.artist;
+
+            document.getElementById("phone").textContent =
+                "Phone / WhatsApp: " + data.phone;
+
+            document.getElementById("email").textContent =
+                "Email: " + data.email;
+
+            document.getElementById("instagram").textContent =
+                "Instagram: " + data.instagram;
+
+
+            /* TATTOO TYPES */
+
+            data.tattoo_types.forEach(function(type) {
+
+                const li =
+                    document.createElement("li");
+
+                li.textContent = type;
+
+                document
+                    .getElementById("tattoo-types")
+                    .appendChild(li);
+
+            });
+
+
+            /* SERVICES */
+
+            data.services.forEach(function(service) {
+
+                const li =
+                    document.createElement("li");
+
+                li.textContent = service;
+
+                document
+                    .getElementById("services-list")
+                    .appendChild(li);
+
+            });
+
+        });
+
+
+        /* =========================
+           TATTOO GALLERY
+        ========================= */
+
+        fetch("http://127.0.0.1:5000/api/images")
+
+        .then(function(response) {
+
+            return response.json();
+
+        })
+
+        .then(function(images) {
+
+            const gallery =
+                document.getElementById("tattoo-gallery");
+
+            gallery.innerHTML = "";
+
+
+            images.forEach(function(image) {
+
+                const item =
+                    document.createElement("div");
+
+                item.className = "gallery-item";
+
+
+                const img =
+                    document.createElement("img");
+
+                img.src =
+                    "http://127.0.0.1:5000/images/" + image;
+
+                img.alt =
+                    "D works Tattoo artwork";
+
+
+                const overlay =
+                    document.createElement("div");
+
+                overlay.className =
+                    "gallery-overlay";
+
+
+                const title =
+                    document.createElement("h3");
+
+                title.textContent =
+                    "D works Tattoo";
+
+
+                overlay.appendChild(title);
+
+                item.appendChild(img);
+
+                item.appendChild(overlay);
+
+                gallery.appendChild(item);
+
+            });
+
+        })
+
+        .catch(function(error) {
+
+            document.getElementById("tattoo-gallery").innerHTML =
+                "Unable to load tattoo images.";
+
+            console.log(error);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
