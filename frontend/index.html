@@ -753,7 +753,7 @@
            TATTOO GALLERY
         ========================= */
 
-        fetch("http://127.0.0.1:5000/api/images")
+        fetch("https://d-works-tattoo.onrender.com/api/images")
 
         .then(function(response) {
 
@@ -781,7 +781,8 @@
                     document.createElement("img");
 
                 img.src =
-                    "http://127.0.0.1:5000/images/" + image;
+    "https://d-works-tattoo.onrender.com/images/" + image;
+                    
 
                 img.alt =
                     "D works Tattoo artwork";
