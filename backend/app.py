@@ -60,7 +60,9 @@ def serve_image(filename):
         "images"
     )
 
-    return send_from_directory(image_folder, filename)
+    return send_from_directory(image_folder, filename)Flask
+flask-cors
+gunicorn
 
 # Tattoo images API
 @app.route("/api/images")
